@@ -1,0 +1,25 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+
+{varType string $videoId}
+
+<div
+    id="video-lightbox-{$videoId}"
+    class="video-lightbox fixed z-50 inset-0 w-full h-full bg-black bg-opacity-75 justify-center items-center hidden"
+>
+    <div class="container-lg relative z-20 flex items-center justify-center p-4 w-full h-full">
+        {element VimeoPlayer,
+            videoId: $videoId,
+            title: "",
+        }
+    </div>
+
+    <div class="absolute z-10 inset-0 cursor-pointer" data-close></div>
+
+    <button type="button" data-close class="absolute right-2 top-2 z-30 w-16 h-16 lg:w-12 lg:h-12">
+        {element Icon,
+            key: "x",
+            size: App\Types\Size::MD,
+            class: "bg-blue hover:bg-blue-600 transition-colors text-white"
+        }
+    </button>
+</div>

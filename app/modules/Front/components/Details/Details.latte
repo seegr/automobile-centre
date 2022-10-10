@@ -1,0 +1,9 @@
+{varType string $summary}
+{varType string $text}
+
+<details>
+  <summary class="cursor-pointer flex flex-row">
+    <span>{$summary|nbsp|noescape}</span>
+  </summary>
+  <div>{$text|nbsp|noescape}</div>
+</details>

@@ -1,0 +1,40 @@
+<form n:name="form" class="contact-form grid grid-cols-2 gap-4 w-full">
+
+    {element TextInput,
+        input: $form['fullname'],
+        class: "col-span-full",
+    }
+    {element TextInput,
+        input: $form['email'],
+        class: "col-span-full",
+    }
+
+    {element TextInput,
+        input: $form['phone'],
+        class: "col-span-full",
+    }
+
+    {element TextArea,
+        input: $form['message'],
+        class: "col-span-full",
+    }
+
+    <div class="col-span-full">
+        {element Checkbox,
+            input: $form['gdprConsent'],
+            class: "col-span-full",
+        }
+
+        {element Checkbox,
+            input: $form['newsletterConsent'],
+            class: "col-span-full",
+        }
+    </div>    
+
+    <div class="col-span-2 justify-self-center">
+        <button n:name="send" type="submit" class="btn">{$form['send']->caption}</button>
+        {* {element SubmitButton} *}
+    </div>
+
+    {input recaptcha_token}
+</form>

@@ -1,0 +1,127 @@
+{define bodyClass}page-homepage{/define}
+{define metaTitle}Homepage{/define}
+{define metaDescription}homepage metadesc{/define}
+
+{varType App\FrontModule\Presenters\HomepagePresenter $presenter}
+
+{block pageContent}
+  <nav
+    x-data="{ pageScroll: false }"
+    @scroll.window=" pageScroll = window.scrollY > 50 "
+    class="fixed z-50 w-full transition-all duration-500"
+    :class=" pageScroll && 'bg-white shadow' "
+  >
+    <div class="flex container-lg">
+      <div class="logo">
+        <div
+          class="font-secondary text-[1.5rem] py-4"
+          :class=" pageScroll ? 'text-blue' : 'text-grey' "
+        >AUTOMOBILE CENTRE</div>
+      </div>
+      <div class="items flex items-center ml-auto space-x-10">
+        {foreach $presenter::NAV as $key}
+          <a
+            href="#{$key}"
+            class="font-bold hover:text-orange"
+            :class=" pageScroll ? 'text-blue' : 'text-grey' "
+          >{_Homepage.sections.$key}</a>
+        {/foreach}
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="relative min-h-screen">
+      <div class="absolute z-10 left-0 top-0 h-full w-full">
+        <img
+            src="{$basePath}/dist/front/images/hero-bg.jpg"
+            alt="Hero image"
+            class="h-full w-full object-cover"
+        >
+      </div>
+      <div class="relative z-20 flex min-h-screen justify-center items-center bg-black/60">
+        <h1 class="font-secondary text-orange">
+          <div class="text-[5rem]">AUTOMOBILE CENTRE</div>
+          <div class="text-[3rem]">Czech Republic a.s.</div>
+        </h1>
+      </div>
+    </div>
+  </header>
+
+  {var $headingClass = 'text-h2 font-bold text-blue text-center'}
+
+  <main class="container-lg py-20">
+    <section
+      n:foreach="$presenter::PAGE_SECTIONS as $key"
+      id="{$key}"
+      class="pb-40"
+    >
+      <h2 class="text-h2 font-bold text-blue flex justify-center items-center pb-10">
+        <span class="bg-orange h-2 w-10"></span>
+        <span class="px-4">{_Homepage.sections.$key}</span>
+        <span class="bg-orange h-2 w-10"></span>
+      </h2>
+      {include #$key}
+    </section>
+  </main>
+
+{/block}
+
+{define uvod}
+  uvod blabla
+{/define}
+
+{define uzaverky}
+  <div class="divide-y">
+    {foreach range(2015, (new DateTime())->format('Y')) as $year}
+      {var $vzazFile = $filesDir . $presenter::VZAZ_PREFIX . $year . '.pdf'}
+      {var $rozvahaFile = $filesDir . $presenter::ROZVAHA_PREFIX . $year . '.pdf'}
+      {var $vzazPrefix = $presenter::VZAZ_PREFIX}
+      {var $rozvahaPrefix = $presenter::ROZVAHA_PREFIX}
+
+      {var $parts = [$presenter::VZAZ_ID, $presenter::ROZVAHA_ID]}
+
+      {foreach $parts as $part}
+        {var $partFile = ${$part . 'File'}}
+        {var $filePrefix = ${$part. 'Prefix'}}
+
+        <a
+          n:if="file_exists($partFile)"
+          href="{$basePath}/files/{$filePrefix}{$year}.pdf"
+          class="flex items-center py-4 text-blue hover:text-orange transition-all"
+        >
+          <div>
+            {_Homepage.{$part}_text, [
+            'year' => $year
+            ]}
+          </div>
+          <div class="w-[20px] h-[20px] ml-auto">
+            {element Icon key: 'download'}
+          </div>
+        </a>
+      {/foreach}
+    {/foreach}
+  </div>
+{/define}
+
+{define akcionari}
+  <div class="text-center">
+    <div class="text-h4">Připravujeme...</div>
+  </div>
+{/define}
+
+{define kontakt}
+  <div class="flex justify-center">
+    <div>
+      <div class="text-h4 text-blue mb-4">AUTOMOBILE CENTRE Czech Republic a.s.</div>
+      <div>
+        <strong class="text-blue">Sídlo:</strong> Nad Opatovem 2027/3, Chodov, 149 00 Praha 4<br>
+      </div>
+      <div>
+        <strong class="text-blue">IČ:</strong> 042 46 543<br>
+      </div>
+      <a href="{$basePath}/files/{$presenter::VYPIS_FILE}">Výpis z obchodního rejstříku</a>
+    </div>
+  </div>
+{/define}
+

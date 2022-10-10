@@ -1,0 +1,10 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType Nette\Forms\Controls\TextInput $input}
+{varType string $class}
+
+{default $class = null}
+
+<label n:name="$input->name" n:class="$class, 'flex flex-col gap-1'">
+    <span class="textstyle-label px-2">{$input->caption}</span>
+    <input n:name="$input->name" class="bg-transparent border-b border-white px-2 py-1 textstyle-p">
+</label>

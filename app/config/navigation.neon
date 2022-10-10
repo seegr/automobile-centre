@@ -1,0 +1,27 @@
+parameters:
+	navigation:
+		main:
+#			service:
+#				service: ':Front:Homepage:default'
+#				take-in: ':Front:Homepage:default'
+#				take-out: ':Front:Homepage:default'
+#				why: ':Front:Homepage:default'
+#				how: ':Front:Homepage:default'
+#			recycle: ':Front:Homepage:default'
+#			about: ':Front:Homepage:default'
+#			why: ':Front:Homepage:default'
+#			contact: ':Front:Homepage:default'
+#			career: ':Front:Homepage:default'
+
+		footer:
+#			menu:
+#				service: ':Front:Homepage:default'
+#				recycle: ':Front:Homepage:default'
+#				about: ':Front:Homepage:default'
+#				oil: ':Front:Homepage:default'
+#				contact: ':Front:Homepage:default'
+#			other:
+#				terms: ':Front:Homepage:default'
+#				gdpr: ':Front:Homepage:default'
+#				cookies: ':Front:Homepage:default'
+#				docs: ':Front:Homepage:default'

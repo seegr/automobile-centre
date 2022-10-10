@@ -1,0 +1,10 @@
+sections:
+	uvod: Úvod
+	uzaverky: Účetní uzávěrky
+	akcionari: Pro akcionáře
+	kontakt: Kontakt
+
+rozvaha: Rozvaha
+vzaz: Výkaz zisku a ztráty
+vzaz_text: "%year%: VÝKAZ ZISKU A ZTRÁTY, druhové členění v plném rozsahu ke dni: 31.12.%year%"
+rozvaha_text: "%year%: ROZVAHA v plném rozsahu, ke dni: 31.12.%year%"

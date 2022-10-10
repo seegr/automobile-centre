@@ -1,0 +1,10 @@
+{varType array $breadcrumbs}
+
+{default $breadcrumbs = null}
+
+<div n:ifset="$breadcrumbs" class="breadcrumbs w-full">
+    {foreach $breadcrumbs as $crumb}
+        <a href="{$crumb->linkUrl}">{$crumb->linkText|nbsp|noescape}</a>
+        {sep}<span class="mx-2">></span>{/sep}
+    {/foreach}
+</div>

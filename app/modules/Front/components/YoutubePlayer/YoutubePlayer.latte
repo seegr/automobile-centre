@@ -1,0 +1,31 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType string $id}
+
+<div
+        class="aspect-w-16 aspect-h-9 relative"
+        x-data=" { src: null } "
+>
+    <iframe
+      class="object-contain object-center inset-0"
+      loading="lazy"
+      :src="src"
+      x-show="src"
+    >
+    </iframe>
+    <img
+            class="object-contain object-center inset-0"
+            src="{$id|ytThumbnail}"
+            alt="Youtube video"
+            x-show="!src"
+            loading="lazy"
+    >
+    <button
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            @click='src = "//www.youtube.com/embed/{$id}?enablejsapi=1&autoplay=1&color=white"'
+            x-show="!src"
+            title="{_YoutubePlayer.play}"
+    >
+        {element IconCircle key: 'play', size: App\Types\Size::XL }
+        <span class="sr-only">{_YoutubePlayer.play}</span>
+    </button>
+</div>

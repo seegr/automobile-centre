@@ -1,0 +1,54 @@
+.transition {
+  transition: all 600ms ease;
+}
+
+#main-nav {
+    @apply transition;
+    perspective: 2000px;
+    perspective-origin: bottom center;
+
+    //.items-wrap {
+    //  @apply transition;
+    //
+    //  &.fixed {
+    //    scale: 1;
+    //  }
+    //  &:not(.fixed) {
+    //    scale: 0.6;
+    //    visibility: hidden;
+    //  }
+    //}
+
+    .submenu-wrap, .submenu {
+        @apply transition;
+        transform-style: preserve-3d;
+        transform-origin: top center;
+        transform: rotateX(-90deg);
+
+      &.active {
+        transform: rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    @media (min-width: theme('screens.lg')) {
+      .submenu-wrap, .submenu {
+        &:not(.active) {
+          filter: brightness(60%);
+        }
+        &.active {
+          filter: brightness(100%);
+        }
+      }
+    }
+
+    .submenu {
+      &:not(.active) {
+        @apply text-dark-green;
+      }
+      &.active {
+        @apply text-white;
+      }
+    }
+
+}

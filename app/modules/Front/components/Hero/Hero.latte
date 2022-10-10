@@ -1,0 +1,37 @@
+{varType string $image}
+{varType string $title}
+{varType string $text}
+{varType array $numbers}
+
+{default $numbers = []}
+
+<header
+    class="relative min-h-screen"
+>
+    <img src="{$image|image}" alt="{$title} - image" class="absolute w-full h-full object-cover">
+    <div
+        class="absolute left-0 top-0 h-[20%] w-full"
+        style="background: linear-gradient(rgba(5, 30, 26, 0.7) 9.83%, rgba(5, 30, 26, 0) 83.33%)"
+    ></div>
+    <div
+        class="absolute left-0 top-0 w-[80%] h-full"
+        style="background: linear-gradient(89.96deg, rgba(0, 46, 39, 0.53) 47.14%, rgba(5, 75, 65, 0) 94.24%);"
+    ></div>
+    <div class="flex min-h-screen lg:pt-[74px]">
+        <div class="container-xl relative z-10 justify-center text-white flex flex-col py-56x">
+            <h1 class="text-h3 lg:text-h-landing mb-2">Staráme se o odvoz,<br>dovoz a recyklaci<br>olejů a tuků</h1>
+            <p class="text-t24 lg:text-t32 font-semibold">Pro restaurace, města i občany</p>
+            <div class="inline-flex pt-12">
+                <div class="inline-block h-24">
+                    {element ScrollButton}
+                </div>
+                <div n:foreach="$numbers as $number"
+                        class="pl-14"
+                >
+                    <div class="text-t32 font-secondary font-bold leading-none">{$number[0]}</div>
+                    <div class="text-t16">{$number[1]}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

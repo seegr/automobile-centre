@@ -1,0 +1,55 @@
+{templateType App\BaseModule\Templates\BaseTemplate}
+
+<!DOCTYPE html>
+<html lang="{$locale}" data-recaptcha-public-key="{$recaptchaPublicKey}">
+<head>
+    <title>{ifset metaTitle}{include block metaTitle|stripHtml} | {/ifset}{$contact->title}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="{ifset metaDescription}{include block metaDescription|stripHtml|trim}{/ifset}">
+    <meta name="copyright" content="© {php echo date('Y'); }">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Petr Lukáš; https://montyit.cz">
+
+    {element Favicon}
+    {vite js/index.js front}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/dist/front/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{$basePath}/dist/front/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{$basePath}/dist/front/images/favicon-16x16.png">
+    <meta name="theme-color" content="#054B41">
+
+    {* OpenGraph *}
+    {if !stripos($presenter->name, 'error')}
+    <meta property="og:site_name" content="Visualio" />
+    <meta property="og:title" content="{ifset metaTitle}{include block metaTitle|stripHtml}{/ifset}">
+    <meta property="og:description" content="{ifset metaDescription}{include block metaDescription|stripHtml|trim|truncate:160}{/ifset}">
+    <meta property="og:url" content="{link '//this'}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://{$urlFullDomain|noescape}/dist/front/images/og_image_default.png" />
+    <meta property="og:image:secure_url" content="https://{$urlFullDomain|noescape}/dist/front/images/og_image_default.png" /> {*// https *}
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="{$locale}" />
+    {/if}
+    {* END OpenGraph *}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body
+    x-data="{ menuOpen: false }"
+    class="font-primary min-h-screen"
+>
+    {element FlashMessages, flashes: $flashes}
+
+    <main class="w-full pb-44">
+        {include pageContent}
+    </main>
+
+</body>
+</html>

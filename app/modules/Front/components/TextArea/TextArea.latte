@@ -1,0 +1,10 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType Nette\Forms\Controls\TextArea $input}
+{varType string $class}
+
+{default $class = null}
+
+<div n:class="$class, 'flex flex-col gap-1'">
+    <label n:name="$input->name" class="textstyle-label">{$input->caption}</label>
+    <textarea n:name="$input->name" class="bg-transparent border-b border-white min-h-48"></textarea>
+</div>

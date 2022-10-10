@@ -1,0 +1,30 @@
+{varType string $image}
+{varType string $title}
+{varType string $text}
+{varType string $link}
+{varType string $linkText}
+{varType string $class}
+
+{default $image = 'static/image-placeholder.jpg'}
+{default $class = null}
+
+<article
+    n:class="
+        'rounded-2xl shadow-2xl overflow-hidden hover:scale-[1.02] transition-all',
+        $class
+    "
+>
+    <img
+        src="{$image|image}"
+        alt="{$title} - image"
+        class="w-full h-[300px] object-cover"
+    >
+    <div class="px-8 pt-12 pb-10 lg:px-14 lg:pt-14 lg:pb-16 bg-white">
+        <div class="text-h4 lg:text-h3 font-bold text-green">{$title}</div>
+        <div class="text-t16 pt-4 mb-16">{$text}</div>
+        {element ButtonCaret
+            text: $linkText,
+            link: $link
+        }
+    </div>
+</article>

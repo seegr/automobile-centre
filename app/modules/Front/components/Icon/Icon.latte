@@ -1,0 +1,22 @@
+{varType string $key}
+{varType App\Types\Size $Size}
+
+{default $size = App\Types\Size::FULL}
+
+<svg
+  n:class="
+    $size === $Size::XS ? 'w-2 h-2',
+    $size === $Size::SM ? 'w-4 h-4',
+    $size === $Size::MD ? 'w-6 h-6',
+    $size === $Size::LG ? 'w-10 h-10',
+    $size === $Size::XL ? 'w-14 h-14',
+    $size === $Size::FULL ? 'w-full h-full',
+    'flex-shrink-0 fill-current inline-block max-w-full max-h-full'
+  "
+  xmlns="http://www.w3.org/2000/svg"
+{*  viewBox="0 0 10 24"*}
+  width="24"
+  aria-hidden="true"
+>
+  <use xlink:href="{$basePath}/dist/front/sprite.svg#{$key}"></use>
+</svg>

@@ -1,0 +1,12 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+
+{varType Nette\Forms\Controls\SelectBox $input}
+{varType string $title}
+
+<label class="" title="{$title}">
+    <select
+        n:name="$input->name"
+        class="w-full cursor-pointer"
+    >
+    </select>
+</label>

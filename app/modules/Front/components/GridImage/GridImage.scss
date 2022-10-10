@@ -1,0 +1,50 @@
+$angle: 75deg;
+$angleNeg: -75deg;
+$scale: 0.6;
+
+.grid-image-wrap {
+  perspective: 2000px;
+
+  &.animate {
+
+    .grid-image {
+
+      &.from-bottom {
+        transform-origin: bottom;
+      }
+      &.from-top {
+        transform-origin: top;
+      }
+      &.from-left {
+        transform-origin: center left;
+      }
+      &.from-right {
+        transform-origin: center right;
+      }
+
+      &:not(.show) {
+        @apply opacity-0;
+        transform-style: preserve-3d;
+
+        &.from-bottom {
+          transform: translateY(100%) rotateX($angle) scale($scale);
+        }
+        &.from-top {
+          transform: translateY(-100%) rotateX($angle) scale($scale);
+        }
+        &.from-left {
+          transform: translateX(-100%) rotateY($angleNeg) scale($scale);
+        }
+        &.from-right {
+          transform: translateX(100%) rotateY($angleNeg) scale($scale);
+        }
+      }
+
+      &.show {
+        @apply opacity-100 translate-y-0 translate-x-0;
+        transform: rotateX(0deg) rotateY(0deg) scale(1);
+      }
+    }
+  }
+
+}

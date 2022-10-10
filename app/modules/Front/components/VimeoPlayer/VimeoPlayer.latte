@@ -1,0 +1,24 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+
+{varType string $title}
+{varType string $videoId}
+
+{default $width = 1080}
+{default $height = 620}
+
+
+<iframe
+  id="vimeo-player-{$videoId}"
+  class="vimeo-iframe relative cursor-default max-w-full max-h-full"
+  type="text/html"
+  width="{$width}"
+  height="{$height}"
+  src="https://player.vimeo.com/video/{$videoId}?api=1"
+  frameborder="0"
+  title="{$title}"
+  webkitallowfullscreen
+  mozallowfullscreen
+  allowfullscreen
+  loading="lazy"
+>
+</iframe>

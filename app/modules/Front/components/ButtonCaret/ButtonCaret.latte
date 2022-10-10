@@ -1,0 +1,32 @@
+{templateType App\BaseModule\Templates\BaseTemplate}
+
+{varType App\Types\Size $size}
+{varType string $text}
+{varType string $link}
+{varType string $class}
+
+{default $size = $Size::MD}
+{default $link = null}
+{default $class = null}
+
+<a
+    class="inline-flex items-center group"
+    n:tag="$link ? 'a' : 'span'"
+    n:attr="href => $link"
+>
+    <div n:class="
+        'bg-yellow rounded-full flex justify-center items-center',
+        $size === $Size::MD ? 'w-[48px] h-[48px]',
+        $size === $Size::SM ? 'w-[40px] h-[40px]',
+        $class
+    ">
+        <div n:class="
+            'text-green transition-all h-full',
+            $size === $Size::MD ? 'w-[10px] group-hover:w-[12px]',
+            $size === $Size::SM ? 'w-[8px] group-hover:w-[10px]',
+        ">
+            {element Icon key: 'caret'}
+        </div>
+    </div>
+    <div class="font-bold tracking-wide pl-4 uppercase">{$text}</div>
+</a>

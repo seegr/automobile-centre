@@ -1,0 +1,21 @@
+{varType string $class}
+
+{default $class = null}
+
+<nav
+    n:class="
+        'social-icons flex gap-10',
+        $class
+    "
+>
+    <a
+        n:foreach="$socialLinks as $key => $item"
+        href="{$item}"
+        target="_blank"
+        class="group"
+    >
+        <span class="inline-block w-[20px] h-[20px] group-hover:text-yellow">
+            {element Icon key: $key}
+        </span>
+    </a>
+</nav>

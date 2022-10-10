@@ -1,0 +1,14 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+
+{varType Datetime $datetime}
+{varType string $class}
+
+{default $class = null}
+
+<time
+    datetime="{$datetime|date:'Y-m-d'}"
+    n:class="$class"
+>
+    {var $monthNumber = $datetime->format('n')}
+    {_general.datetime.month.$monthNumber} {$datetime|date:'Y'}
+</time>

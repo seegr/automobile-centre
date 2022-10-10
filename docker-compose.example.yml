@@ -1,0 +1,33 @@
+services:
+  web:
+    image: josefjebavy/debian-apache-php8.1-nette
+    working_dir: /var/www/html
+    environment:
+      - NETTE_DEBUG=1
+    volumes:
+      - .:/var/www/html
+      - ./site.conf:/etc/apache2/sites-enabled/000-default.conf
+    ports:
+      - 80:80
+
+  db:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: visucms
+    volumes:
+      - .docker/mysql:/var/lib/mysql
+      - ./sql/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+  composer:
+    image: composer
+    command: [ "composer", "install" ]
+    volumes:
+      - .:/app

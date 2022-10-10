@@ -1,0 +1,50 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+
+  @font-face {
+    font-family: "Hemi";
+    src: url(../fonts/hemi-bold.woff2) format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+}
+
+@layer components {
+
+  /* CONTAINER */
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-2xl {
+    @apply w-full mx-auto;
+    @apply px-5;
+  }
+
+  .container-sm {
+    @apply max-w-screen-sm;
+  }
+  .container-md {
+    @apply max-w-screen-md;
+  }
+  .container-lg {
+    @apply max-w-screen-lg;
+  }
+  .container-xl {
+    @apply max-w-screen-xl;
+  }
+  .container-2xl {
+    @apply max-w-screen-2xl;
+  }
+
+}

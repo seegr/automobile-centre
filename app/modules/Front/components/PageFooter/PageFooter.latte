@@ -1,0 +1,42 @@
+<footer
+    x-data="{ menuOpen: null }"
+    id="page-footer"
+    class="relative"
+>
+    <div class="relative z-10 bg-green text-white">
+        <div class="container-xl relative z-10">
+            <div class="grid grid-cols-2 pt-20">
+                <div class="w-[200px]">
+{*                    <img src="{$basePath}/dist/front/images/logo.svg" alt="Logo">*}
+                </div>
+                <div class="hidden lg:block">
+                    {element SocialIcons class: 'justify-end items-center'}
+                </div>
+            </div>
+            <div class="hidden lg:block my-11 border-b border-white"></div>
+            <div class="grid lg:grid-cols-3 mt-11 lg:mt-0 lg:gap-36 pb-12">
+                <div class="h4">Staráme se o dovoz,<br>odvoz a recyklaci<br>olejů a tuků.</div>
+                <div class="mt-11 lg:mt-0">
+                    <div class="font-secondary tracking-wider text-t16 font-bold lg:pb-6">Kontaktní údaje</div>
+                    <div class="block lg:hidden my-8">
+                        {element SocialIcons}
+                    </div>
+                    <div class="h4 pb-7">
+                        <div class="pb-4">+420 800 800 070</div>
+                        info@trafinoil.cz
+                    </div>
+                    <div class="text-t16 pb-3">Kopeční 1009/12, 710 00 Ostrava<br>Po–Pá 8:00–18:00</div>
+                </div>
+                <div class="lg:grid grid-cols-2 border-t border-b border-white divide-y lg:divide-none divide-white lg:border-t-0 lg:border-b-0 mt-14 lg:mt-0">
+
+                </div>
+            </div>
+            {*      <button type="button" data-cc="c-settings">{_Footer.cookieSettings}</button>*}
+        </div>
+        <div class="font-secondary text-[12px] bg-dark-green py-7">
+            <div class="container-xl text-center lg:text-left">
+                Všechna práva vyhrazena © 2022 xxx
+            </div>
+        </div>
+    </div>
+</footer>

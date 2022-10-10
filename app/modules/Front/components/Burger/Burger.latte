@@ -1,0 +1,31 @@
+{templateType App\BaseModule\Templates\BaseTemplate}
+{varType App\Types\Variant $variant}
+
+{default $variant = $Variant::PRIMARY}
+
+<div class="select-none">
+    <div n:if="$variant === $Variant::PRIMARY" id="burger1" class="burger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div n:if="$variant === $Variant::SECONDARY" id="burger2" class="burger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div n:if="$variant === $Variant::TERTIARY" id="burger3" class="burger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div n:if="$variant === $Variant::QUATERNARY" id="burger4" class="burger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>

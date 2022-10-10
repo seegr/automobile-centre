@@ -1,0 +1,41 @@
+{templateType App\BaseModule\Templates\BaseTemplate}
+
+{varType App\Types\Size $size}
+{varType string $id}
+{varType string $class}
+{varType string $text}
+{varType string $link}
+{varType string $title}
+{varType string $target}
+{varType string $type}
+{varType string $action}
+{varType bool $disabled}
+
+{default $size = $Size::MD}
+{default $id = null}
+{default $class = null}
+{default $link = null}
+{default $tag = isset($link) ? 'a' : null}
+{default $target = null}
+{default $type = empty($link) ? "button" : null}
+{default $title = null}
+{default $action = null}
+{default $disabled = false}
+
+<button
+    n:tag="$tag"
+    n:attr="id: $id, href: $link, title: $title, target: $target, type: $type, onclick: $action"
+    n:class="
+        $class,
+        'bg-yellow leading-none tracking-wider rounded-[64px] inline-block text-center font-bold',
+        $size === $Size::XS ? 'py-3 px-10 text-t14',
+        $size === $Size::SM ? 'py-4 px-10 text-t14 uppercase',
+        $size === $Size::MD ? 'py-4 px-10 uppercase',
+        $size === $Size::LG ? 'py-5 px-14 uppercase',
+        !$disabled ? 'hover:text-white',
+        !$disabled ? 'active:shadow-[inset_1px_1px_15px_rgba(0,0,0,0.1)]',
+        $disabled ? 'text-white opacity-50 cursor-not-allowed' : 'text-green'
+    "
+>
+    {$text|nbsp|noescape}
+</button>

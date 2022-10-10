@@ -1,0 +1,10 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType Nette\Forms\Controls\TextInput $input}
+{varType string $class}
+
+{default $class = null}
+
+<input
+    n:name="$input->name"
+    n:class="$class, 'textstyle-label text-white bg-black hover:bg-gray transition-colors px-14 py-8 hover:no-underline'"
+>

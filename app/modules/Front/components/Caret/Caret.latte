@@ -1,0 +1,19 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType App\Types\Size $size}
+{varType App\Types\Orientation $orientation}
+
+{default $size = App\Types\Size::MD}
+{default $orientation = App\Types\Orientation::RIGHT}
+
+<span
+    aria-hidden="true"
+    n:class="
+    $orientation === $orientation::RIGHT ? '',
+    $orientation === $orientation::LEFT ? 'rotate-180',
+    $orientation === $orientation::TOP ? 'rotate-90',
+    $orientation === $orientation::BOTTOM ? '-rotate-90',
+    'caret transform ease-wind transition-transform duration-300 inline-grid place-content-center'
+    "
+>
+    {element Icon, key: 'caret', size: $size}
+</span>

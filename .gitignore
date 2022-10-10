@@ -1,0 +1,16 @@
+app/config/database.local.neon
+app/config/mail.local.neon
+.idea
+bower_components
+node_modules
+vendor
+www/upload
+www/assets/*
+!www/assets/static
+www/assets/static/*
+!www/assets/static/original
+www/dist
+.env
+.docker
+docker-compose.yml
+.DS_Store

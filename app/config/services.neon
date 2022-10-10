@@ -1,0 +1,16 @@
+services:
+    - App\Services\Authenticator
+    - App\Services\Authorizator::create
+    - App\Services\MailService(%contact%)
+    - App\Services\ImageService
+    - App\Services\ParamService(%contact%, %social%, %links%, %keys%, %navigation%)
+    - App\Services\TusService(%tempDir%)
+    - App\Services\LocaleService
+    - App\Services\RecaptchaService(%keys.recaptcha.secret%)
+    - App\Services\FileStorage(%wwwDir%, %storage%)
+    - App\Filter\FileFilter(%storage%)
+    router: App\Router\RouterFactory::createRouter
+    latte.templateFactory: App\Templates\TemplateFactory
+    latte.latteFactory:
+        setup:
+            - setLoader(App\Macros\ComponentFileLoader())

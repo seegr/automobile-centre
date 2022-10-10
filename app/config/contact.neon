@@ -1,0 +1,12 @@
+parameters:
+    contact:
+        email: 'info@visu.cz'
+        phone: ''
+        title: 'Trafin Oil'
+        name: ''
+        street: ''
+        city: ''
+        postCode: ''
+        country: ''
+        ic: ''
+        dic: ''

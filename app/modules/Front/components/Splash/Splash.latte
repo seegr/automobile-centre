@@ -1,0 +1,28 @@
+{varType string $no}
+{varType string $left}
+{varType string $right}
+{varType string $top}
+{varType string $bottom}
+{varType int $index}
+{varType string $height}
+
+{default $index = null}
+{default $class = ''}
+
+{var $imageAlign = Nette\Utils\Strings::contains($class, 'left') ? 'object-left-bottom' : 'object-right-bottom'}
+
+<div
+    n:class="
+        'absolute',
+        $class
+    "
+>
+    <img
+        src="{$basePath}/dist/front/images/splash-{$no}.png"
+        alt="splash 1"
+        n:class="
+            'w-full h-full object-contain',
+            $imageAlign
+        "
+    >
+</div>

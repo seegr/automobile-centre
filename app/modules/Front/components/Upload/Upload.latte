@@ -1,0 +1,15 @@
+{templateType App\FrontModule\Templates\BaseTemplate}
+{varType Nette\Forms\Controls\UploadControl $input}
+
+<label n:name="$input->name" class="upload group col-span-full flex gap-6 cursor-pointer">
+    <div class="w-12 h-12 p-3 bg-gray text-white group-hover:text-black transition-colors">
+        <div class="transform -translate-x-0.5 -translate-y-0.5">
+            {element Icon, key: "file"}
+        </div>
+    </div>
+    <div class="flex flex-col justify-center">
+        <div class="textstyle-label-2 group-hover:text-white transition-colors">{$input->caption}</div>
+        <div class="textstyle-p-2">{_form.maxFileSize, ['size' => '10 MB']}</div>
+    </div>
+    <input n:name="$input->name" class="hidden">
+</label>

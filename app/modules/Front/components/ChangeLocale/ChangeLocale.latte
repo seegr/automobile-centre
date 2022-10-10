@@ -1,0 +1,13 @@
+<div class="change-locale flex flex-nowrap gap-4 uppercase ml-auto px-10 md:ml-0">
+  {foreach $localeList as $localeKey => $localeItem}
+    <a
+        n:href="changeLocale! $localeKey"
+        n:class="change-locale-item, $currentLocale !== $localeKey ? font-normal"
+        title="{_ChangeLocale.switchTo, [lang=>$presenter->translate('_ChangeLocale.language.'.$localeKey)]}"
+    >
+      <span class="change-locale-item-short md:hidden">{$localeKey}</span>
+      <span class="change-locale-item-long hidden md:block">{_ChangeLocale.language.$localeKey}</span>
+    </a>
+  {/foreach}
+  <span class="text-white">{$currentLocale}</span>
+</div>

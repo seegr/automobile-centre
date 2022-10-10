@@ -1,0 +1,34 @@
+{varType string $image}
+{varType string $alt}
+{varType string $class}
+{varType bool $cover}
+{varType bool $animate}
+{varType int $duration}
+{varType string $direction}
+
+{default $class = null}
+{default $cover = true}
+{default $alt = ''}
+{default $animate = false}
+{default $direction = 'from-bottom'}
+{default $duration = 'duration-1000'}
+
+<div
+    n:class="
+        'grid-image-wrap inline-block w-full',
+        $animate ? 'animate',
+        $class,
+    "
+>
+    <img
+        src="{$image|image}"
+        alt="{$alt}"
+        n:class="
+            'grid-image block rounded-xl transition-all',
+            $cover ? 'w-full h-full object-cover',
+            $animate ? 'animate',
+            $duration,
+            $direction
+        "
+    >
+</div>
