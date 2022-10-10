@@ -6,26 +6,43 @@
 
 {block pageContent}
   <nav
-    x-data="{ pageScroll: false }"
+    x-data="{
+      menuOpen: false,
+      pageScroll: false
+    }"
     @scroll.window=" pageScroll = window.scrollY > 50 "
     class="fixed z-50 w-full transition-all duration-500"
-    :class=" pageScroll && 'bg-white shadow' "
+    :class=" pageScroll || menuOpen && 'bg-white shadow' "
   >
-    <div class="flex container-lg">
+    <div class="container-lg flex items-center">
       <div class="logo">
         <div
-          class="font-secondary text-[1.5rem] py-4"
-          :class=" pageScroll ? 'text-blue' : 'text-grey' "
+          class="font-secondary text-[1.5rem] h-[70px] flex items-center"
+          :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
         >AUTOMOBILE CENTRE</div>
       </div>
-      <div class="items flex items-center ml-auto space-x-10">
-        {foreach $presenter::NAV as $key}
-          <a
-            href="#{$key}"
-            class="font-bold hover:text-orange"
-            :class=" pageScroll ? 'text-blue' : 'text-grey' "
-          >{_Homepage.sections.$key}</a>
-        {/foreach}
+      <div
+        class="flex justify-center justify-center items-center lg:block lg:ml-auto transition-all duration-500"
+        :class=" menuOpen ? 'absolute top-[70px] left-0 w-full lg:relative bg-white lg:bg-inherit' : 'hidden' "
+      >
+        <div
+          class="items flex flex-col lg:flex-row lg:space-x-10 h-screen lg:h-auto"
+        >
+          {foreach $presenter::NAV as $key}
+            <a
+              href="#{$key}"
+              class="font-bold hover:text-orange"
+              :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
+            >{_Homepage.sections.$key}</a>
+          {/foreach}
+        </div>
+      </div>
+      <div
+        class="lg:hidden ml-auto hover:text-orange"
+        :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
+        @click=" menuOpen = !menuOpen "
+      >
+        {element Burger}
       </div>
     </div>
   </nav>
