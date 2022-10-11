@@ -1,4 +1,4 @@
-database:
-	dsn: 'mysql:host=db;dbname=visucms'
-	user: root
-	password: root
+#database:
+#	dsn: 'mysql:host=db;dbname=visucms'
+#	user: root
+#	password: root

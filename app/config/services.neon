@@ -1,6 +1,6 @@
 services:
-    - App\Services\Authenticator
-    - App\Services\Authorizator::create
+#    - App\Services\Authenticator
+#    - App\Services\Authorizator::create
     - App\Services\MailService(%contact%)
     - App\Services\ImageService
     - App\Services\ParamService(%contact%, %social%, %links%, %keys%, %navigation%)
