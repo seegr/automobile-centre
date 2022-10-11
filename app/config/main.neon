@@ -8,10 +8,6 @@ includes:
     - navigation.neon
     - search.neon
     - translation.neon
-    - mail.neon
-    - mail.local.neon
-    - database.neon
-    - database.local.neon
 
 application:
     errorPresenter: Error
