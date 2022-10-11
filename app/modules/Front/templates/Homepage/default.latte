@@ -5,49 +5,10 @@
 {varType App\FrontModule\Presenters\HomepagePresenter $presenter}
 
 {block pageContent}
-  <nav
-    x-data="{
-      menuOpen: false,
-      pageScroll: false
-    }"
-    @scroll.window=" pageScroll = window.scrollY > 50 "
-    class="fixed z-50 w-full transition-all duration-500"
-    :class=" pageScroll || menuOpen && 'bg-white shadow' "
-  >
-    <div class="container-lg flex items-center">
-      <div class="logo">
-        <div
-          class="font-secondary text-[1.5rem] h-[70px] flex items-center"
-          :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
-        >AUTOMOBILE CENTRE</div>
-      </div>
-      <div
-        class="flex justify-center justify-center items-center lg:block lg:ml-auto transition-all duration-500"
-        :class=" menuOpen ? 'absolute top-[70px] left-0 w-full lg:relative bg-white lg:bg-inherit' : 'hidden' "
-      >
-        <div
-          class="items flex flex-col lg:flex-row lg:space-x-10 h-screen lg:h-auto"
-        >
-          {foreach $presenter::NAV as $key}
-            <a
-              href="#{$key}"
-              class="font-bold hover:text-orange"
-              :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
-            >{_Homepage.sections.$key}</a>
-          {/foreach}
-        </div>
-      </div>
-      <div
-        class="lg:hidden ml-auto hover:text-orange"
-        :class=" pageScroll || menuOpen ? 'text-blue' : 'text-grey' "
-        @click=" menuOpen = !menuOpen "
-      >
-        {element Burger}
-      </div>
-    </div>
-  </nav>
 
-  <header>
+  {element Navigation}
+
+  <header id="uvod">
     <div class="relative min-h-screen">
       <div class="absolute z-10 left-0 top-0 h-full w-full">
         <img
@@ -56,10 +17,10 @@
             class="h-full w-full object-cover"
         >
       </div>
-      <div class="relative z-20 flex min-h-screen justify-center items-center bg-black/60">
+      <div class="relative text-center lg:text-left z-20 flex min-h-screen justify-center items-center bg-black/60">
         <h1 class="font-secondary text-orange">
-          <div class="text-[5rem]">AUTOMOBILE CENTRE</div>
-          <div class="text-[3rem]">Czech Republic a.s.</div>
+          <div class="text-[3rem] lg:text-[5rem] leading-none pb-2">AUTOMOBILE CENTRE</div>
+          <div class="text-[1.5rem] lg:text-[3rem]">Czech Republic a.s.</div>
         </h1>
       </div>
     </div>
@@ -67,11 +28,11 @@
 
   {var $headingClass = 'text-h2 font-bold text-blue text-center'}
 
-  <main class="container-lg py-20">
+  <main class="container-lg pb-20">
     <section
       n:foreach="$presenter::PAGE_SECTIONS as $key"
       id="{$key}"
-      class="pb-40"
+      class="pt-[100px] pb-38"
     >
       <h2 class="text-h2 font-bold text-blue flex justify-center items-center pb-10">
         <span class="bg-orange h-2 w-10"></span>
@@ -83,10 +44,6 @@
   </main>
 
 {/block}
-
-{define uvod}
-  uvod blabla
-{/define}
 
 {define uzaverky}
   <div class="divide-y">
@@ -131,13 +88,25 @@
   <div class="flex justify-center">
     <div>
       <div class="text-h4 text-blue mb-4">AUTOMOBILE CENTRE Czech Republic a.s.</div>
-      <div>
-        <strong class="text-blue">Sídlo:</strong> Nad Opatovem 2027/3, Chodov, 149 00 Praha 4<br>
+      <div class="space-y-3">
+        <div>
+          <strong class="text-blue">Sídlo:</strong> Nad Opatovem 2027/3, Chodov, 149 00 Praha 4<br>
+        </div>
+        <div>
+          <strong class="text-blue">IČ:</strong> 042 46 543<br>
+        </div>
+        <a
+            href="{$basePath}/files/{$presenter::VYPIS_FILE}"
+            class="block text-blue hover:text-orange transition-all inline-flex"
+        >
+          <div class="w-[20px] h-[20px] ml-auto">
+            {element Icon key: 'download'}
+          </div>
+          <span class="pl-4">
+          Výpis z obchodního rejstříku
+          </span>
+        </a>
       </div>
-      <div>
-        <strong class="text-blue">IČ:</strong> 042 46 543<br>
-      </div>
-      <a href="{$basePath}/files/{$presenter::VYPIS_FILE}">Výpis z obchodního rejstříku</a>
     </div>
   </div>
 {/define}

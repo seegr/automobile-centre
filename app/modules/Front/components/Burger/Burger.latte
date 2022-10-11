@@ -3,7 +3,10 @@
 
 {default $variant = $Variant::PRIMARY}
 
-<div class="select-none">
+<div
+    class="burger-wrap select-none"
+    :class=" menuBg && 'active' "
+>
     <div n:if="$variant === $Variant::PRIMARY" id="burger1" class="burger-button">
         <span></span>
         <span></span>

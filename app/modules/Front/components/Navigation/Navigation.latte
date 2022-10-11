@@ -1,142 +1,43 @@
-{templateType App\BaseModule\Templates\BaseTemplate}
-
-{varType App\Types\Variant $variant}
-{varType array $items}
-
-{default $variant = $Variant::PRIMARY}
-
-{var $logo = $variant === $Variant::PRIMARY ? 'logo-light.svg' : 'logo-dark.svg'}
-{var $logoToggle = 'logo-light.svg'}
-
-{var $color = $variant === $Variant::PRIMARY ? 'text-white'}
-{var $colorToggle = $variant === $Variant::PRIMARY ? 'text-white'}
-
-{var $itemClass = 'item group leading-none text-h4 opacity-90 hover:opacity-100 lg:text-t14 lg:tracking-wide lg:font-semibold lg:p-2.5 lg:inline-flex lg:items-center h-full'}
-
-{var $shadow = 'drop-shadow-[0_7px_4px_rgba(0,0,0,0.55)]'}
-
 <nav
-    id="main-nav"
     x-data="{
-        navHover: false,
-        submenuHover: null,
-        pageScroll: false,
-        logo: true
+      menuOpen: false,
+      pageScroll: false,
+      menuBg: false
     }"
-    @mouseover=" navHover = true "
-    @mouseout=" navHover = false "
-    n:class="
-        'fixed z-50 top-0 left-0 w-full bg-[255_255_255_0.1]x backdrop-blur-[2px]x transition-all cursor-default',
-        $shadow
-    "
-    :class=" navHover || pageScroll ? '{$colorToggle} bg-green delay-[0]' : '{$color} !delay-500'  "
-    @scroll.window=" pageScroll = window.scrollY > 1; console.log(pageScroll) "
+        @scroll.window=" pageScroll = window.scrollY > 50; menuBg = (pageScroll || menuOpen) "
+        @click=" menuBg = (pageScroll || menuOpen) "
+        class="fixed z-50 w-full transition-all duration-500"
+        :class=" menuBg && 'bg-white shadow' "
 >
-    <div class="submenu-wrap absolute left-0 top-[100%] bg-dark-green h-[40px] w-full drop-shadow-xl"></div>
-    <div class="container-xl flex items-center h-[72px] px-6 lg:px-5">
-        <div class="relative z-20">
-            <div class="hidden lg:block w-[162px]">
-                <img
-                        src="{$basePath}/dist/front/images/{$logo}"
-                        alt="Logo"
-                        :class=" navHover && 'hidden'"
-                >
-                <img
-                        src="{$basePath}/dist/front/images/{$logoToggle}"
-                        alt="Logo"
-                        :class=" navHover ? 'block' : 'hidden'"
-                >
-            </div>
-            <div class="block lg:hidden w-[34px]">
-                <img
-                        src="{$basePath}/dist/front/images/logo-sm.svg"
-                        alt="Logo"
-                >
+    <div class="container-lg flex items-center">
+        <div class="logo relative z-10">
+            <div
+                class="font-secondary text-[1.5rem] h-[70px] flex items-center"
+                :class=" menuBg ? 'text-blue' : 'text-grey' "
+            >AUTOMOBILE CENTRE</div>
+        </div>
+        <div
+            class="absolute lg:relative flex h-screen lg:h-auto justify-center lg:block lg:ml-auto top-0 left-0 pt-[70px] lg:pt-0 w-full lg:w-auto bg-white lg:bg-inherit transition-all duration-500"
+            :class=" !menuOpen && 'hidden' "
+        >
+            <div
+                class="items flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10 lg:h-auto pt-[70px] lg:pt-0"
+            >
+                {foreach $presenter::NAV as $key}
+                    <a
+                        href="#{$key}"
+                        class="text-t24 lg:text-t16 font-bold hover:text-orange"
+                        :class=" menuBg ? 'text-blue' : 'text-grey' "
+                    >{_Homepage.sections.$key}</a>
+                {/foreach}
             </div>
         </div>
-        <div class="flex h-full ml-auto items-center gap-1 xl:gap-2.5">
-            <button
-                class="relative z-20 block lg:hidden"
+        <div
+                class="lg:hidden ml-auto hover:text-orange"
+                :class=" menuBg ? 'text-blue' : 'text-grey' "
                 @click=" menuOpen = !menuOpen "
-            >
-                {element Burger}
-            </button>
-            <div
-                class="items-wrap absolute mt-[72px] lg:mt-0 pt-10x pb-40x lg:pt-0x lg:pb-0x top-0 lg:top-0 left-0 h-screen lg:h-full w-full bg-green lg:bg-inherit z-10 lg:relative lg:block duration-500 lg:scale-100 lg:opacity-100 lg:visible"
-                :class=" menuOpen ? 'fixed opacity-100 scale-100' : 'invisible opacity-0 scale-75' "
-            >
-                <div class="flex justify-center items-centerx h-full">
-                    <div class="flex flex-col lg:flex-row lg:h-full w-full space-y-10 lg:space-y-0 pt-10 pb-40 lg:pt-0 lg:pb-0 overflow-y-auto lg:overflow-visible text-center lg:text-left">
-                            {foreach $items as $item => $data}
-                                {if is_array($data)}
-                                    {* submenu parent *}
-                                    <div n:class="
-                                        'submenu-parent',
-                                        $itemClass,
-                                    ">
-                                        <a >
-                                            {_Navigation.$item.title}
-                                        </a>
-                                        <span class="hidden lg:inline-block pl-2.5">
-                                        {element ToggleCaret}
-                                    </span>
-                                        <div
-                                                class="submenu absolute flex top-[100%] h-[40px] invisible group-hover:visible transition-all"
-                                        >
-                                            <a
-                                                    n:foreach="$data as $subitem => $link"
-                                n:class="$itemClass, $iterator->isFirst() ? 'lg:pl-0'"
-                                n:href="$link"
-                                            >
-                                                {_Navigation.$item.items.$subitem}
-                                            </a>
-                                        </div>
-                                    </div>
-                                {else}
-                                    <a
-                                            n:class="
-                                                $itemClass
-                                            "
-                        n:href="$data"
-                                    >{_Navigation.$item}</a>
-                                {/if}
-                            {/foreach}
-                            <div
-                                    n:class="
-                                        $itemClass,
-                                        'relative'
-                                    "
-                                    data-id=" locale "
-                                    @mouseover=" submenuHover = $el.dataset.id "
-                                    @mouseout=" submenuHover = null "
-                            >
-                            <span class="hidden lg:inline-block">
-                                <span class="lg:pr-2.5">{_Navigation.locale.$locale}</span>
-                                {element ToggleCaret}
-                                </span>
-                                <span
-                                        class="submenu locale-list lg:absolute lg:top-[100%] lg:left-0 lg:h-[40px] lg:bg-dark-green lg:py-2.5 lg:px-4"
-                                        :class=" submenuHover === $el.parentElement.dataset.id && 'active' "
-                                >
-                            {foreach $localeList as $code => $label}
-                                {continueIf $code === $locale}
-                                <a
-                                        class="block text-white lg:text-inherit"
-                                        href="#"
-                                >{_Navigation.locale.$code}</a>
-                            {/foreach}
-                        </span>
-                            </div>
-                            <div class="self-center">
-                                {element Button
-                                text: 'Objednat',
-                                size: $Size::XS,
-                                class: 'lg:ml-4 xl:ml-9'
-                                }
-                            </div>
-                        </div>
-                </div>
-            </div>
+        >
+            {element Burger}
         </div>
     </div>
 </nav>

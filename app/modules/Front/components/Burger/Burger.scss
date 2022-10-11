@@ -1,3 +1,12 @@
+.burger-wrap {
+  &:not(.active) span {
+    @apply bg-white;
+  }
+  &.active span {
+    @apply bg-blue;
+  }
+}
+
 #burger1, #burger2, #burger3, #burger4 {
   width: 30px;
   height: 22px;
@@ -19,7 +28,7 @@
   position: absolute;
   height: 2px;
   width: 100%;
-  background: #fff;
+  //background: #fff;
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -76,7 +85,7 @@
   position: absolute;
   height: 2px;
   width: 50%;
-  background: #ffffff;
+  //background: #ffffff;
   opacity: 1;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);

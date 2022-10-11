@@ -1,7 +1,11 @@
 {templateType App\BaseModule\Templates\BaseTemplate}
 
 <!DOCTYPE html>
-<html lang="{$locale}" data-recaptcha-public-key="{$recaptchaPublicKey}">
+<html
+    lang="{$locale}"
+    data-recaptcha-public-key="{$recaptchaPublicKey}"
+    class="scroll-smooth"
+>
 <head>
     <title>{ifset metaTitle}{include block metaTitle|stripHtml} | {/ifset}{$contact->title}</title>
     <meta charset="utf-8">
