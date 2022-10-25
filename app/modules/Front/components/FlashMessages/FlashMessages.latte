@@ -1,12 +1,16 @@
 {templateType App\FrontModule\Templates\BaseTemplate}
 
-<div n:if="count($flashes) > 0" class="fixed top-0 left-0 w-full z-100">
-	<div
+<div n:if="count($flashes) > 0" class="fixed z-[100] top-[20%] left-0 w-full z-100">
+    <div
         n:foreach="$flashes as $flash"
         role="alertdialog"
         aria-label="{$flash->message|stripHtml}"
-        class="flash-message container-xl py-8 text-center cursor-pointer"
         title="{_FlashMessages.closePrompt}"
+        @click="$el.remove()"
+        n:class="
+            'flash-message container-xl py-8 text-center cursor-pointer backdrop-blur hover:opacity-90 transition-all',
+            $flash->type === 'warning' ? 'bg-orange/50'
+        "
     >
         {$flash->message|nbsp|noescape}
     </div>

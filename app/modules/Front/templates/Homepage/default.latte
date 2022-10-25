@@ -18,10 +18,13 @@
         >
       </div>
       <div class="relative text-center lg:text-left z-20 flex min-h-screen justify-center items-center bg-black/60">
-        <h1 class="font-secondary text-orange">
-          <div class="text-[3rem] lg:text-[5rem] leading-none pb-2">AUTOMOBILE CENTRE</div>
-          <div class="text-[1.5rem] lg:text-[3rem]">Czech Republic a.s.</div>
-        </h1>
+        <div class="text-orange w-3/4 md:w-1/2">
+          <img
+            src="{$basePath}/dist/front/images/logo-orange.svg"
+            alt="Logo"
+            class="block h-full w-full"
+          >
+        </div>
       </div>
     </div>
   </header>
@@ -66,7 +69,7 @@
         >
           <div>
             {_Homepage.{$part}_text, [
-            'year' => $year
+              'year' => $year
             ]}
           </div>
           <div class="w-[20px] h-[20px] ml-auto">
@@ -80,7 +83,35 @@
 
 {define akcionari}
   <div class="text-center">
-    <div class="text-h4">Připravujeme...</div>
+    <div class="text-h4x">
+      <form n:name="loginForm"
+          xx-data="ajax({ type: null})"
+          x@submit.prevent="request"
+      >
+        {var $inputClass = 'appearance-none border px-4 py-2'}
+        <div class="flex justify-center gap-6">
+          <input
+            n:name='user'
+            n:class="$inputClass"
+            placeholder="{$form['user']->caption}"
+          >
+          <input
+            n:name='pass'
+            n:class="$inputClass"
+            placeholder="{$form['pass']->caption}"
+          >
+          <a
+            x-data="ajax"
+            @click.prevent="request"
+            n:href="login!"
+            n:class="
+              $inputClass,
+              'bg-blue text-white hover:bg-blue/90'
+            "
+          >{$form['submit']->caption}</a>
+        </div>
+      </form>
+    </div>
   </div>
 {/define}
 
@@ -96,14 +127,15 @@
           <strong class="text-blue">IČ:</strong> 042 46 543<br>
         </div>
         <a
-            href="{$basePath}/files/{$presenter::VYPIS_FILE}"
+            href="https://or.justice.cz/ias/ui/rejstrik-firma.vysledky?subjektId=904113&typ=PLATNY"
+            target="_blank"
             class="block text-blue hover:text-orange transition-all inline-flex"
         >
           <div class="w-[20px] h-[20px] ml-auto">
             {element Icon key: 'download'}
           </div>
           <span class="pl-4">
-          Výpis z obchodního rejstříku
+            Výpis z obchodního rejstříku
           </span>
         </a>
       </div>

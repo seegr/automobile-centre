@@ -49,8 +49,9 @@
     x-data="{ menuOpen: false }"
     class="font-primary min-h-screen"
 >
-    {element FlashMessages, flashes: $flashes}
-
+    {snippet flashes}
+        {element FlashMessages, flashes: $flashes}
+    {/snippet}
     <main class="w-full pb-44">
         {include pageContent}
     </main>

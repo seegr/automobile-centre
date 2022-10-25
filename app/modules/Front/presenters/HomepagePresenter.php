@@ -6,6 +6,7 @@ namespace App\FrontModule\Presenters;
 
 use App\Model\ArticleRepository;
 use App\Model\FileRepository;
+use Nette\Application\UI\Form;
 
 final class HomepagePresenter extends BasePresenter
 {
@@ -32,8 +33,8 @@ final class HomepagePresenter extends BasePresenter
 	const VZAZ_ID = 'vzaz';
 	const ROZVAHA_PREFIX = 'ac_cr_rozvaha_';
 	const VZAZ_PREFIX = 'ac_cr_vzaz_';
-	const ROZVAHA_LIST = [2015, 2016, 2017, 2019, 2020];
-	const VZAZ_LIST = [2015, 2016, 2017, 2018, 2019, 2020];
+	const ROZVAHA_LIST = [2015, 2016, 2017, 2019, 2020, 2021];
+	const VZAZ_LIST = [2015, 2016, 2017, 2018, 2019, 2020, 2021];
 
 	const VYPIS = 'vypis';
 	const VYPIS_FILE = 'vypis-904113.pdf';
@@ -46,5 +47,26 @@ final class HomepagePresenter extends BasePresenter
 	public function renderDefault()
 	{
 		$this->template->filesDir = __DIR__ . '/../../../../www/files/';
+	}
+
+	public function createComponentLoginForm(): Form
+	{
+		$form = new Form();
+
+		$form->addTextArea('user', 'Uživatelské jméno')->setRequired();
+		$form->addPassword('pass', 'Heslo')->setRequired();
+		$form->addSubmit('submit', 'Přihlásit');
+
+//		$form->onSubmit[] = function() {
+//			$this->flashMessage('Nesprávné přihlašovací údaje', 'warning');
+//		};
+
+		return $form;
+	}
+
+	public function handleLogin()
+	{
+		$this->flashMessage('Nesprávné přihlašovací údaje', 'warning');
+		$this->redrawControl('flashes');
 	}
 }
