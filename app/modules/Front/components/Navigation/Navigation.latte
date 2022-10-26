@@ -9,15 +9,9 @@
         class="fixed z-50 w-full transition-all duration-500"
         :class=" menuBg && 'bg-white shadow' "
 >
-    <div class="container-lg flex items-center">
-        <div class="logo relative z-10">
-            <div
-                class="font-secondary text-[1.5rem] h-[70px] flex items-center"
-                :class=" menuBg ? 'text-blue' : 'text-grey' "
-            >AUTOMOBILE CENTRE</div>
-        </div>
+    <div class="container-lg flex justify-center items-center min-h-[80px]">
         <div
-            class="absolute lg:relative flex h-screen lg:h-auto justify-center lg:block lg:ml-auto top-0 left-0 pt-[70px] lg:pt-0 w-full lg:w-auto bg-white lg:bg-inherit transition-all duration-500"
+            class="absolute lg:relative flex h-screen lg:h-auto justify-center lg:block top-0 left-0 pt-[70px] lg:pt-0 w-full lg:w-auto bg-white lg:bg-inherit transition-all duration-500"
             :class=" !menuOpen && 'hidden' "
         >
             <div
@@ -26,7 +20,7 @@
                 {foreach $presenter::NAV as $key}
                     <a
                         href="#{$key}"
-                        class="text-t24 lg:text-t16 font-bold hover:text-orange"
+                        class="py-4 text-t24 lg:text-t16 font-bold hover:text-orange"
                         :class=" menuBg ? 'text-blue' : 'text-grey' "
                     >{_Homepage.sections.$key}</a>
                 {/foreach}
