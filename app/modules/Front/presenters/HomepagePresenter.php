@@ -33,8 +33,6 @@ final class HomepagePresenter extends BasePresenter
 	const VZAZ_ID = 'vzaz';
 	const ROZVAHA_PREFIX = 'ac_cr_rozvaha_';
 	const VZAZ_PREFIX = 'ac_cr_vzaz_';
-	const ROZVAHA_LIST = [2015, 2016, 2017, 2018, 2019, 2020, 2021];
-	const VZAZ_LIST = [2015, 2016, 2017, 2018, 2019, 2020, 2021];
 
 	const VYPIS = 'vypis';
 	const VYPIS_FILE = 'vypis-904113.pdf';
